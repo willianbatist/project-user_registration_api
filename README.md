@@ -23,7 +23,6 @@
 
 ## Description
 
-Testing
 
 ## Installation
 
