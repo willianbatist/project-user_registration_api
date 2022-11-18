@@ -1,4 +1,6 @@
 import { DataSource } from 'typeorm';
+import { User } from '../users/entities/user.entity';
+import { Users1668791026622 } from '../users/migrations/1668791026622-Users';
 
 export const databaseProviders = [
   {
@@ -10,8 +12,9 @@ export const databaseProviders = [
         port: 3306,
         username: 'root',
         password: '997366918',
-        database: 'users_cadastro',
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        database: 'testes',
+        entities: [User],
+        migrations: [Users1668791026622],
         synchronize: true,
       });
 
