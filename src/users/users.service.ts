@@ -12,13 +12,18 @@ export class UserService {
     private userRepository: Repository<Users>,
   ) {}
 
+  async findAll(): Promise<Users[]> {
+    return this.userRepository.find();
+  }
+
+  async findOneById(id: number): Promise<Users> {
+    const user = await this.userRepository.findOneBy({ id });
+    return user;
+  }
+
   async create(obj): Promise<unknown> {
     const newUser = this.userRepository.create(obj);
     return this.userRepository.save(newUser);
-  }
-
-  async findAll(): Promise<Users[]> {
-    return this.userRepository.find();
   }
 
   async deleteUser(id: number) {
