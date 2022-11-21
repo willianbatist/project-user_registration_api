@@ -7,7 +7,6 @@ import { Users } from './entities/user.entity';
 export class UserService {
   constructor(
     @Inject('USERS_REPOSITORY')
-    // private userRepository: Repository<Users>,
     @InjectRepository(Users)
     private userRepository: Repository<Users>,
   ) {}
@@ -21,7 +20,7 @@ export class UserService {
     return user;
   }
 
-  async create(obj): Promise<unknown> {
+  async create(obj): Promise<Users[]> {
     const newUser = this.userRepository.create(obj);
     return this.userRepository.save(newUser);
   }
