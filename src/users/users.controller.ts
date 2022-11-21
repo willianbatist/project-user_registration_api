@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Put,
   Delete,
   Param,
   ParseIntPipe,
@@ -28,5 +29,13 @@ export class UserController {
   @Delete('/user/:id')
   async deleteUserById(@Param('id', ParseIntPipe) id: number) {
     await this.userService.deleteUser(id);
+  }
+
+  @Put('/user/:id')
+  async updateUserById(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto,
+  ) {
+    await this.userService.updateUser(id, updateUserDto);
   }
 }
