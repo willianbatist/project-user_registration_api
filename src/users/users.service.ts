@@ -20,4 +20,8 @@ export class UserService {
   async findAll(): Promise<Users[]> {
     return this.userRepository.find();
   }
+
+  async deleteUser(id: number) {
+    return this.userRepository.delete({ id });
+  }
 }
