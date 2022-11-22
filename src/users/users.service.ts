@@ -18,11 +18,11 @@ export class UserService {
     const { email, password } = body;
     const userEmail = await this.userRepository.findOne({ where: { email } });
     if (!userEmail) {
-      throw new HttpException('email not registered', HttpStatus.UNAUTHORIZED);
+      throw new HttpException('email not registered', HttpStatus.BAD_REQUEST);
     }
     const check = bcrypt.compareSync(password, userEmail.password);
     if (!check) {
-      throw new HttpException('incorrect password', HttpStatus.UNAUTHORIZED);
+      throw new HttpException('incorrect password', HttpStatus.BAD_REQUEST);
     }
     return userEmail;
   }
