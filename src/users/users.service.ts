@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,6 +13,19 @@ export class UserService {
     @InjectRepository(Users)
     private userRepository: Repository<Users>,
   ) {}
+
+  async userLogin(body) {
+    const { email, password } = body;
+    const userEmail = await this.userRepository.findOne({ where: { email } });
+    if (!userEmail) {
+      throw new HttpException('email not registered', HttpStatus.UNAUTHORIZED);
+    }
+    const check = bcrypt.compareSync(password, userEmail.password);
+    if (!check) {
+      throw new HttpException('incorrect password', HttpStatus.UNAUTHORIZED);
+    }
+    return userEmail;
+  }
 
   async findAll(): Promise<Users[]> {
     return this.userRepository.find();
