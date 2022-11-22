@@ -16,3 +16,12 @@ export const validationCreateUser = async (username, email, userRepository) => {
     return false;
   }
 };
+
+export const validationId = async (id: number, userRepository) => {
+  const user = await userRepository.findOneBy({ id });
+  if (!user) {
+    throw new HttpException('ID not found or invalid.', HttpStatus.NOT_FOUND);
+  } else {
+    return false;
+  }
+};
