@@ -37,7 +37,7 @@ export class UserController {
 
   @Post('/user')
   async createUser(@Body() createUserDto: CreateUserDto): Promise<Users> {
-    return this.userService.create(createUserDto);
+    return this.userService.createUser(createUserDto);
   }
 
   @Delete('/user/:id')
