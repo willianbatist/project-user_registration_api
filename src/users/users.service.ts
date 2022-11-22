@@ -4,7 +4,10 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { validationCreateUser } from '../middleware/user.middleware';
+import {
+  validationCreateUser,
+  validationId,
+} from '../middleware/user.middleware';
 
 @Injectable()
 export class UserService {
@@ -33,6 +36,9 @@ export class UserService {
 
   async findOneById(id: number): Promise<Users> {
     const user = await this.userRepository.findOneBy({ id });
+    if (!user) {
+      throw new HttpException('ID not found or invalid.', HttpStatus.NOT_FOUND);
+    }
     return user;
   }
 
@@ -57,10 +63,16 @@ export class UserService {
   }
 
   async deleteUser(id: number) {
-    return this.userRepository.delete({ id });
+    const user = await validationId(id, this.userRepository);
+    if (!user) {
+      return this.userRepository.delete({ id });
+    }
   }
 
-  updateUser(id: number, updateUserDetails) {
-    return this.userRepository.update({ id }, { ...updateUserDetails });
+  async updateUser(id: number, updateUserDetails) {
+    const user = await validationId(id, this.userRepository);
+    if (!user) {
+      return this.userRepository.update({ id }, { ...updateUserDetails });
+    }
   }
 }
