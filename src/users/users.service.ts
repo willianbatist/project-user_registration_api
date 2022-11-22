@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import {
+  validationBodyCreateUser,
   validationCreateUser,
   validationId,
 } from '../middleware/user.middleware';
@@ -43,6 +44,7 @@ export class UserService {
   }
 
   async create(body: CreateUserDto): Promise<Users> {
+    validationBodyCreateUser(body);
     const { first_name, last_name, username, email, password } = body;
     const hashPassword = bcrypt.hashSync(password, 10);
     const validation = await validationCreateUser(
