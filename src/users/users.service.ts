@@ -43,7 +43,7 @@ export class UserService {
     return user;
   }
 
-  async create(body: CreateUserDto): Promise<Users> {
+  async createUser(body: CreateUserDto): Promise<Users> {
     validationBodyCreateUser(body);
     const { first_name, last_name, username, email, password } = body;
     const hashPassword = bcrypt.hashSync(password, 10);
