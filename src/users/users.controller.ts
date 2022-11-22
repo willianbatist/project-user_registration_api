@@ -11,6 +11,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 import { Users } from './entities/user.entity';
 import { UserService } from './users.service';
 
@@ -20,17 +21,17 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('/users')
-  async findAll(): Promise<Users[]> {
+  async findAll(): Promise<CreateUserDto[]> {
     return this.userService.findAll();
   }
 
   @Get('/user/:id')
-  async findOne(@Param('id') id: number): Promise<Users> {
+  async findOne(@Param('id') id: number): Promise<CreateUserDto> {
     return this.userService.findOneById(id);
   }
 
   @Post('/user/login')
-  async loginUser(@Body() login) {
+  async loginUser(@Body() login: LoginUserDto) {
     return this.userService.userLogin(login);
   }
 
