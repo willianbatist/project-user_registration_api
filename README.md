@@ -17,6 +17,7 @@ Este repositório contem o **Projeto User Registration API** que reúne o aprend
   - docker-compose;
   - TypeORM;
   - MySQL;
+  - bcrypt;
   - Swagger.
 
 ---
