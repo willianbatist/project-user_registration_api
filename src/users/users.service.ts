@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import {
+  validationBodyLogin,
   validationBodyCreateUser,
   validationCreateUser,
   validationId,
@@ -19,6 +20,7 @@ export class UserService {
   ) {}
 
   async userLogin(body) {
+    validationBodyLogin(body);
     const { email, password } = body;
     const userEmail = await this.userRepository.findOne({ where: { email } });
     if (!userEmail) {
