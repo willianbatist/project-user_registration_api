@@ -33,8 +33,45 @@ Este repositório contem o **Projeto User Registration API** que reúne o aprend
 O Projeto User Registration é uma API RESTFul de cadastro de usuários, onde é possível realizar um CRUD (Create, Read, Update, Delete) e validação de login. As principais tecnologias utilizadas foram Nest.js, TypeScript, TypeORM, MySQL e docker-compose.
 
 
-### Uso
+### Start do Projeto
 
-Como demonstrado no gif de exemplo, no campo insira valor, você coloca o valor base, mais abaixo nos botões numérico, você escolhe qual porcentagem queira usar ou digita no input ao lado dos botões, por fim basta aberta aumentar ou diminui para saber qual será o novo valor.
- 
+***Obs: Para rodar o projeto é necessário ter docker-compose na versão 3.9 pra cima e node.js.*** 
+
+    git clone git@github.com:willianbatist/project-user_registration_api.git
+
+Na raiz do repositório:
+
+    docker-compose up -d --build
+--
+
+    npm run build
+--
+
+    npm run up
+--
+
+    npm run start:dev
+--
+
+Caso ocorra algum erro durante o processo, pare a execução e repita o comando.
+A API estará disponível em: http://localhost:3010/
+
 ---
+
+
+## Documentação da API Swagger
+
+A documentação detalhada da API está disponível em: http://localhost:3010/api/
+
+**Observações acerca da API:**
+Para evitar erros, certifique-se de não enviar informações faltando para a API e sempre enviar um objeto e nunca um array. Na documentação da API no swagger estão disponíveis todas as rotas e os dados que são obrigatórios a serem enviados.
+
+A senha do usuário, que é devolvida pela API, está criptografada, portanto o que aparece não é exatamente o que foi digitado.
+
+Por ser uma aplicação simples e ter apenas o intuito de aprendizagem não foi utilizado dotenv.
+
+---
+
+### Contato
+
+e-mail: willian.alves.b15@gmail.com
