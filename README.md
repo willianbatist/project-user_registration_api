@@ -9,9 +9,7 @@ Este repositório contem o **Projeto User Registration API** que reúne o aprend
 <a href="https://github.com/willianbatist/project-user_registration_api/main/LICENSE"><img src="https://img.shields.io/github/license/osintbrazuca/osint-brazuca-regex?color=blue"></a>
 <a href="https://github.com/willianbatist/project-user_registration_api/graphs/contributors"><img src="https://img.shields.io/github/contributors-anon/osintbrazuca/osint-brazuca-regex"></a>
 <a href="https://github.com/willianbatist/project-user_registration_api/issues"><img src="https://img.shields.io/github/issues-raw/osintbrazuca/osint-brazuca-regex"></a>
-<a href="https://github.com/willianbatist/project-user_registration_api/discussions"><img src="https://img.shields.io/github/discussions/osintbrazuca/osint-brazuca-regex"></a>
 <a href="https://github.com/willianbatist/project-user_registration_api/network/members"><img src="https://img.shields.io/github/forks/osintbrazuca/osint-brazuca-regex"></a>
-<img src="https://img.shields.io/github/stars/osintbrazuca/osint-brazuca-regex.svg?style=social" title="Stars" /> 
 </p>
 
 #### Habilidades que foram exigidas:
