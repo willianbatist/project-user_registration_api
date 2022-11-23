@@ -7,6 +7,16 @@ export const validationBodyCreateUser = (body) => {
   }
 };
 
+export const validationBodyLogin = (body) => {
+  const { email, password } = body;
+  if (!email) {
+    throw new HttpException('Email field not sent', HttpStatus.BAD_REQUEST);
+  }
+  if (!password) {
+    throw new HttpException('Password field not sent', HttpStatus.BAD_REQUEST);
+  }
+};
+
 export const validationCreateUser = async (username, email, userRepository) => {
   const userName = await userRepository.findOne({ where: { username } });
   const userEmail = await userRepository.findOne({ where: { email } });
