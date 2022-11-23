@@ -6,7 +6,6 @@ import { Users } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import {
-  validationLoginUser,
   validationBodyLogin,
   validationBodyCreateUser,
   validationCreateUser,
@@ -25,8 +24,13 @@ export class UserService {
     validationBodyLogin(body);
     const { email, password } = body;
     const user = await this.userRepository.findOne({ where: { email } });
+    if (!user) {
+      throw new HttpException('email not registered', HttpStatus.BAD_REQUEST);
+    }
     const checkPassword = bcrypt.compareSync(password, user.password);
-    validationLoginUser(user, checkPassword);
+    if (!checkPassword) {
+      throw new HttpException('incorrect password', HttpStatus.BAD_REQUEST);
+    }
     return user;
   }
 

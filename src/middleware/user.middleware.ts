@@ -10,15 +10,6 @@ export const validationBodyLogin = (body) => {
   }
 };
 
-export const validationLoginUser = (user, checkPassword) => {
-  if (!user) {
-    throw new HttpException('email not registered', HttpStatus.BAD_REQUEST);
-  }
-  if (!checkPassword) {
-    throw new HttpException('incorrect password', HttpStatus.BAD_REQUEST);
-  }
-};
-
 export const validationBodyCreateUser = (body) => {
   const { first_name, last_name, username, email, password } = body;
   if (!first_name || !last_name || !username || !email || !password) {
