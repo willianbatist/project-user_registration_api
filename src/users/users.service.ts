@@ -4,7 +4,9 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 import {
+  validationLoginUser,
   validationBodyLogin,
   validationBodyCreateUser,
   validationCreateUser,
@@ -19,18 +21,13 @@ export class UserService {
     private userRepository: Repository<Users>,
   ) {}
 
-  async userLogin(body) {
+  async userLogin(body: LoginUserDto) {
     validationBodyLogin(body);
     const { email, password } = body;
-    const userEmail = await this.userRepository.findOne({ where: { email } });
-    if (!userEmail) {
-      throw new HttpException('email not registered', HttpStatus.BAD_REQUEST);
-    }
-    const check = bcrypt.compareSync(password, userEmail.password);
-    if (!check) {
-      throw new HttpException('incorrect password', HttpStatus.BAD_REQUEST);
-    }
-    return userEmail;
+    const user = await this.userRepository.findOne({ where: { email } });
+    const checkPassword = bcrypt.compareSync(password, user.password);
+    validationLoginUser(user, checkPassword);
+    return user;
   }
 
   async findAll(): Promise<Users[]> {
