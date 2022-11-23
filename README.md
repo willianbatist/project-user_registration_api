@@ -30,7 +30,7 @@ Este repositório contem o **Projeto User Registration API** que reúne o aprend
 
 ## Apresentação do Projeto
 
-O Projeto é uma aplicação web, onde o usuário poderá inserir um valor, escolher a porcentagem e ver quanto aumenta ou diminui, assim o mesmo vai ter uma calculadora simples de porcentagem para os momentos que queira saber quanto vai receber de desconto ou de aumento.
+O Projeto User Registration é uma API RESTFul de cadastro de usuários, onde é possível realizar um CRUD (Create, Read, Update, Delete) e validação de login. As principais tecnologias utilizadas foram Nest.js, TypeScript, TypeORM, MySQL e docker-compose.
 
 
 ### Uso
