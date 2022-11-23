@@ -1,12 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-export const validationBodyCreateUser = (body) => {
-  const { first_name, last_name, username, email, password } = body;
-  if (!first_name || !last_name || !username || !email || !password) {
-    throw new HttpException('some field is not filled', HttpStatus.BAD_REQUEST);
-  }
-};
-
 export const validationBodyLogin = (body) => {
   const { email, password } = body;
   if (!email) {
@@ -14,6 +7,22 @@ export const validationBodyLogin = (body) => {
   }
   if (!password) {
     throw new HttpException('Password field not sent', HttpStatus.BAD_REQUEST);
+  }
+};
+
+export const validationLoginUser = (user, checkPassword) => {
+  if (!user) {
+    throw new HttpException('email not registered', HttpStatus.BAD_REQUEST);
+  }
+  if (!checkPassword) {
+    throw new HttpException('incorrect password', HttpStatus.BAD_REQUEST);
+  }
+};
+
+export const validationBodyCreateUser = (body) => {
+  const { first_name, last_name, username, email, password } = body;
+  if (!first_name || !last_name || !username || !email || !password) {
+    throw new HttpException('some field is not filled', HttpStatus.BAD_REQUEST);
   }
 };
 
