@@ -39,3 +39,13 @@ export const validationId = async (id: number, userRepository) => {
     return false;
   }
 };
+
+export const validationBodyUpdate = (body) => {
+  const { first_name, last_name, username, email, password } = body;
+  if (!first_name && !last_name && !username && !email && !password) {
+    throw new HttpException(
+      'no content has been uploaded',
+      HttpStatus.BAD_REQUEST,
+    );
+  }
+};

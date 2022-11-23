@@ -10,7 +10,9 @@ import {
   validationBodyCreateUser,
   validationCreateUser,
   validationId,
+  validationBodyUpdate,
 } from '../middleware/user.middleware';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -74,10 +76,26 @@ export class UserService {
     }
   }
 
-  async updateUser(id: number, updateUserDetails) {
+  async updateUser(id: number, updateUser: UpdateUserDto) {
     const user = await validationId(id, this.userRepository);
+    validationBodyUpdate(updateUser);
+    let hashPassword: string;
+    if (updateUser.password) {
+      hashPassword = bcrypt.hashSync(updateUser.password, 10);
+    }
     if (!user) {
-      return this.userRepository.update({ id }, { ...updateUserDetails });
+      return this.userRepository.update(
+        { id },
+        {
+          ...{
+            first_name: updateUser.first_name,
+            last_name: updateUser.last_name,
+            username: updateUser.username,
+            email: updateUser.email,
+            password: hashPassword,
+          },
+        },
+      );
     }
   }
 }
