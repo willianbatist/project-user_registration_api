@@ -5,7 +5,10 @@ Este repositório contem o **Projeto User Registration API** que reúne o aprend
 # Projeto User Registration API
 
 
-
+<p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://github.com/willianbatist/project-user_registration_api/main/LICENSE"><img src="https://img.shields.io/github/license/osintbrazuca/osint-brazuca-regex?color=blue"></a>
+</p>
 
 #### Habilidades que foram exigidas:
 
