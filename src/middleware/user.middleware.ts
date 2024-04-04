@@ -11,7 +11,7 @@ export const validationBodyLogin = (body) => {
 };
 
 export const validationBodyCreateUser = (body) => {
-  const { first_name, last_name, username, email, password } = body;
+
   if (!first_name || !last_name || !username || !email || !password) {
     throw new HttpException('some field is not filled', HttpStatus.BAD_REQUEST);
   }
