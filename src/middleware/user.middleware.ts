@@ -10,7 +10,12 @@ export const validationBodyLogin = (body) => {
   }
 };
 
-
+export const validationBodyCreateUser = (body) => {
+  const { first_name, last_name, username, email, password } = body;
+  if (!first_name || !last_name || !username || !email || !password) {
+    throw new HttpException('some field is not filled', HttpStatus.BAD_REQUEST);
+  }
+};
 
 export const validationCreateUser = async (username, email, userRepository) => {
   const userName = await userRepository.findOne({ where: { username } });
