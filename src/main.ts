@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 import { apiDescription } from './utils/index';
 
 async function bootstrap() {
-
+  const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
     .setTitle('API de cadastro de usuários')
