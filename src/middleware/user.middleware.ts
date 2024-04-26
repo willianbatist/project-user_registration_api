@@ -18,8 +18,7 @@ export const validationBodyCreateUser = (body) => {
 };
 
 export const validationCreateUser = async (username, email, userRepository) => {
-  const userName = await userRepository.findOne({ where: { username } });
-  const userEmail = await userRepository.findOne({ where: { email } });
+
   if (userName) {
     throw new HttpException('User already exists', HttpStatus.CONFLICT);
   }
