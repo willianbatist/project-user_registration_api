@@ -1,10 +1,5 @@
 export class CreateUserDto {
-  /**
-   * O primeiro nome será utilizado para qualquer coisa (Perfil, Home Page, etc) que precise exibir
-   * informações da pessoa conectada.
-   * @example "Willian"
-   */
-  first_name: string;
+
 
   /**
    * O sobrenome será utilizado caso precise exibir ou utilizar o nome completo do usuário.
